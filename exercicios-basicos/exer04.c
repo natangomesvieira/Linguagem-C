@@ -16,8 +16,7 @@ int main () {
 
     //calculando a media ponderada levando em cosideracao 
     //peso 2 pra nota1 e peso 3 pra nota 2
-    media = (nota1 * 2) + (nota2 * 3);
-    media /= 5;
+    media = ((nota1 * 2) + (nota2 * 3)) / 5;
     
     //exibindo o resultado
     printf("O valor da media ponderada = %.2f", media);
