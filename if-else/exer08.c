@@ -1,4 +1,4 @@
-#include <stdio.h>
+﻿#include <stdio.h>
 #include <stdlib.h>
 
 int main () {
@@ -45,10 +45,3 @@ int main () {
     }
     return 0;
 }
-
-
-/*Até R$ 80,00 Barato
-Entre R$ 80,00 e R$ 120,00 Normal
-Entre R$ 120,00 e R$
-200,00 Caro
-Maior que R$ 200,00 Muito caro*/
