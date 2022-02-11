@@ -28,5 +28,6 @@ int main(int argc, char const *argv[]){
         mediageral += mediaIndv[i];                             //calculando a media geral da turma
     }
     printf("A media geral da turma = %.1f\n", mediageral);      //exibindo a media geral da turma
+    free(nome);                                                 //liberando a memoria alocada
     return 0;
 }
