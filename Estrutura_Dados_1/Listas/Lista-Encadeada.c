@@ -1,0 +1,118 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct no {
+    int info;
+    struct no *prox;
+} Nolista;
+
+Nolista* criarlista() {
+    return NULL;
+}
+
+int listavazia(Nolista **l) {
+    return (*l == NULL);
+}
+
+void insereElemento(Nolista **l, int v) {
+    Nolista *n = malloc(sizeof (Nolista));
+    if (n != NULL) {
+        n->info = v;
+        n->prox = *l;
+        *l = n;
+    } else {
+        printf("Nao foi possivel alocar memoria! \n");
+    }
+}
+
+void imprime(Nolista **l) {
+    if (!listavazia(l)) {
+        Nolista *p;
+        for (p = *l; p != NULL; p = p->prox) {
+            printf("%d ", p->info);
+        }
+        printf("\n");
+    } else {
+        printf("A lista esta vazia!\n");
+    }
+}
+
+int busca(Nolista **l, int n) {
+    if (!listavazia(l)) {
+        Nolista *p;
+        int cont = -1;
+        for (p = *l; p != NULL; p = p->prox) {
+            ++cont;
+            if (p->info == n) {
+                return cont;
+            }
+        }
+    } else {
+        printf("A lista esta vazia!\n");
+    }
+}
+
+void insereOrdenado(Nolista **l, int v) {
+    Nolista *p, *ant = NULL;
+    Nolista *n = (Nolista*) malloc(sizeof (Nolista));
+    if (n != NULL) {
+        n->info = v;
+        for (p = *l; p != NULL && p->info < v; p = p->prox) {
+            ant = p;
+        }
+        if (ant == NULL) {
+            n->prox = p;
+            *l = n;
+        } else {
+            ant->prox = n;
+            n->prox = p;
+        }
+    } else
+        printf("Nao foi possivel alocar memoria!\n");
+}
+
+void removeElemento(Nolista **l, int v) {
+    Nolista *p, *ant = NULL;
+    for (p = *l; p != NULL && p->info != v; p = p->prox) {
+        ant = p;
+    }
+    if (p == NULL) {
+        printf("Elemento nao encontrado na lista!\n");
+    } else {
+        if (ant == NULL)
+            *l = p->prox;
+        else
+            ant->prox = p->prox;
+        free(p);
+    }
+}
+
+int main(int argc, char** argv) {
+    Nolista *lista;
+    lista = criarlista();
+
+    listavazia(&lista);
+    
+    insereOrdenado(&lista, 5);
+    insereOrdenado(&lista, 1);
+    insereOrdenado(&lista, 2);
+    insereOrdenado(&lista, 9);
+
+    imprime(&lista);
+
+    removeElemento(&lista, 2);
+    
+    imprime(&lista);
+    //insereElemento(&lista, 1);
+    //insereElemento(&lista, 2);
+    //insereElemento(&lista, 3);
+
+
+
+    //printf("O valor digitado esta na posicao %d da lista\n", busca(&lista, 1));
+
+
+
+    return (EXIT_SUCCESS);
+}
+
