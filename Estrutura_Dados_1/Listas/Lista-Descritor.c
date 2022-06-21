@@ -50,6 +50,41 @@ void inserirFinal(Descritor *l, int valor) {
     }
 }
 
+void removeElemento(Descritor *l, int v) {
+    Nolista *aux, *ant = NULL;
+    if (estaVazia(l)) //se a lista estiver vazia
+        printf("A lista esta vazia!\n");
+    else {
+        for (aux = l->prim; aux != NULL && aux->info != v; aux = aux->prox)
+            ant = aux;
+        if (aux == NULL) //se o elemento não estiver na lista
+            printf("Elemento nao encontrado na lista!\n");
+        else {
+            if (ant == NULL) // 1º elemento na lista
+                l->prim = aux->prox;
+            else //se o elemento estiver no meio ou o ultimo da lista
+                ant->prox = aux->prox;
+            free(aux);
+            l->n--;
+        }
+    }
+}
+
+void liberaLista(Descritor *l) {
+    if (estaVazia(l))
+        printf("A lista esta vazia!\n");
+    else {         
+        Nolista *aux, *p = NULL;
+        for (aux = l->prim; aux != NULL; aux = p) {
+            p = aux->prox;
+            free(aux);
+        }
+        l->n = 0;
+        l->ult = NULL;
+        l->prim = NULL;
+    }
+}
+
 void imprimirLista(Descritor *l) {
     if (!estaVazia(l)) {
         Nolista *aux;
@@ -76,7 +111,13 @@ int main(int argc, char** argv) {
 
     printf("\n");
 
-    inserirFinal(&lista, 0);
+    removeElemento(&lista, 15);
+    imprimirLista(&lista);
+    
+    liberaLista(&lista);
+    printf("\n");
+    
+    insereInicio(&lista, 100);
     imprimirLista(&lista);
 
     return (EXIT_SUCCESS);
