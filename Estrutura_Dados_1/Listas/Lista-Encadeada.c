@@ -76,17 +76,14 @@ void insereFinal(Nolista **l, int v) {
     if (n != NULL) {
         if (!listavazia(l)) {
             Nolista *aux;
-            for (aux = *l; aux != NULL; aux = aux->prox) {
-                if (aux->prox == NULL) {
-                    n->info = v;
-                    n->prox = NULL;
-                    aux->prox = n;
-                } else
-                    printf("Lista vazia!\n");
-            }
+            for (aux = *l; aux != NULL && aux->prox != NULL; aux = aux->prox);
+            n->info = v;
+            n->prox = NULL;
+            aux->prox = n;
         } else
-            printf("Nao foi possivel alocar memoria!\n");
-    }
+            printf("Lista vazia!\n");
+    } else
+        printf("Nao foi possivel alocar memoria!\n");
 }
 
 void removeElemento(Nolista **l, int v) {
