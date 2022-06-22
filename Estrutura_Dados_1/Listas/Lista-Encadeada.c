@@ -71,6 +71,24 @@ void insereOrdenado(Nolista **l, int v) {
         printf("Nao foi possivel alocar memoria!\n");
 }
 
+void insereFinal(Nolista **l, int v) {
+    Nolista *n = (Nolista*) malloc(sizeof (Nolista));
+    if (n != NULL) {
+        if (!listavazia(l)) {
+            Nolista *aux;
+            for (aux = *l; aux != NULL; aux = aux->prox) {
+                if (aux->prox == NULL) {
+                    n->info = v;
+                    n->prox = NULL;
+                    aux->prox = n;
+                } else
+                    printf("Lista vazia!\n");
+            }
+        } else
+            printf("Nao foi possivel alocar memoria!\n");
+    }
+}
+
 void removeElemento(Nolista **l, int v) {
     Nolista *p, *ant = NULL;
     for (p = *l; p != NULL && p->info != v; p = p->prox) {
@@ -92,7 +110,7 @@ int main(int argc, char** argv) {
     lista = criarlista();
 
     listavazia(&lista);
-    
+
     insereOrdenado(&lista, 5);
     insereOrdenado(&lista, 1);
     insereOrdenado(&lista, 2);
@@ -101,7 +119,7 @@ int main(int argc, char** argv) {
     imprime(&lista);
 
     removeElemento(&lista, 2);
-    
+
     imprime(&lista);
     //insereElemento(&lista, 1);
     //insereElemento(&lista, 2);
