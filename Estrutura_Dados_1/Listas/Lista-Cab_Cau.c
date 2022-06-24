@@ -53,6 +53,25 @@ void insereFinal(Lista *l, int v){
     }
 }
 
+void removerElemento(Lista *l, int v){
+    if(estaVazia(l))
+        printf("Lista Vazia!\n");
+    else{
+        Nolista *aux, *ant = NULL;
+        for(aux = l->cab->prox; aux != l->cau && aux->info != v; aux = aux->prox)
+            ant = aux;
+        if(aux == l->cau)
+            printf("Elemento nao encontrado!\n");
+        else{
+            if(ant == NULL)
+                l->cab->prox = aux->prox;
+            else
+                ant->prox = aux->prox;
+            free(aux);
+        }
+    }
+}
+
 void imprimirLista(Lista *l){
     Nolista *p = (Nolista*)malloc(sizeof(Nolista));
     if(estaVazia(l))
@@ -78,6 +97,10 @@ int main(int argc, char** argv) {
     printf("\n");
     
     insereFinal(&lista, 0);
+    imprimirLista(&lista);
+    printf("\n");
+    
+    removerElemento(&lista,2);
     imprimirLista(&lista);
     
     return (EXIT_SUCCESS);
