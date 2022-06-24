@@ -82,6 +82,18 @@ void imprimirLista(Lista *l){
     }
 }
 
+void liberarLista(Lista *l){
+    if(estaVazia(l))
+        printf("Lista Vazia!\n");
+    else{
+        Nolista *aux;
+        for(aux = l->cab->prox; aux != l->cau; aux = l->cab->prox){
+            l->cab->prox = aux->prox;
+            free(aux);
+        }
+    }
+}
+
 int main(int argc, char** argv) {
     
     Lista lista;
@@ -102,7 +114,10 @@ int main(int argc, char** argv) {
     
     removerElemento(&lista,2);
     imprimirLista(&lista);
+    printf("\n");
     
+    liberarLista(&lista);
+    imprimirLista(&lista);
     return (EXIT_SUCCESS);
 }
 
