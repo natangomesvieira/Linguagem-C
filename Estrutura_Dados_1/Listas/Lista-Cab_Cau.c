@@ -30,13 +30,26 @@ void insereInicio(Lista *l, int v) {
     Nolista *novo = (Nolista*) malloc(sizeof (Nolista));
     novo->info = v;
     if (estaVazia(l)) {
-        novo->prox = l->cab->prox;
+        novo->prox = l->cau;
         l->cab->prox = novo;
     } else {
-        //Nolista *aux = (Nolista*) malloc(sizeof (Nolista));
-        // aux = l->cab->prox;
         novo->prox = l->cab->prox;
         l->cab->prox = novo;
+    }
+}
+
+void insereFinal(Lista *l, int v){
+    Nolista *novo = (Nolista*)malloc(sizeof(Nolista));
+    novo->info = v;
+    if(estaVazia(l)){
+        novo->prox = l->cau;
+        l->cab->prox = novo;
+    }
+    else{
+        Nolista *aux;
+        for(aux = l->cab->prox; aux->prox != l->cau; aux = aux->prox);
+        novo->prox = l->cau;
+        aux->prox = novo;
     }
 }
 
@@ -60,6 +73,11 @@ int main(int argc, char** argv) {
     insereInicio(&lista, 2);
     insereInicio(&lista, 3);
     
+    imprimirLista(&lista);
+    
+    printf("\n");
+    
+    insereFinal(&lista, 0);
     imprimirLista(&lista);
     
     return (EXIT_SUCCESS);
