@@ -73,7 +73,7 @@ void removerElemento(Lista *l, int v){
 }
 
 void imprimirLista(Lista *l){
-    Nolista *p = (Nolista*)malloc(sizeof(Nolista));
+    Nolista *p;
     if(estaVazia(l))
         printf("Lista Vazia!\n");
     else{
