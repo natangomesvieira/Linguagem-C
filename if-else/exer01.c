@@ -19,10 +19,10 @@ int main () {
     printf("Media do aluno = %.2f \n", media);
     //conferindo se a media é maior que 7 para ser aprovado
    if (media < 7) {
-        printf("REPROVADO");
+        printf("Aluno: REPROVADO");
     }
     else {
-        printf("APROVADO");
+        printf("Aluno: APROVADO");
     }
 
     return 0;
