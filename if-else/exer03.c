@@ -12,10 +12,10 @@ int main () {
 
     //verificando qual dos dois é maior
     if (numero1 < numero2){
-        printf("%.2f e menor que %.2f",numero1,numero2);
+        printf("%.2f e menor que %.2f",numero1,numero2); //exibe o maior
     }
     else {
-        printf("%.2f e menor que %.2f",numero2,numero1);
+        printf("%.2f e menor que %.2f",numero2,numero1); //exibe o menor
     }
     return 0;
 }
