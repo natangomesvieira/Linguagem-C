@@ -102,20 +102,6 @@ void removeElemento(Nolista **l, int v) {
     }
 }
 
-int Busca(Nolista **l, int v) {
-    if (!listavazia(l)) {
-        Nolista *aux;
-        int cont = 0;
-        for (aux = *l; aux != NULL && aux->info != v; aux = aux->prox)
-            cont++;
-        if (aux == NULL)
-            printf("Elemento não encontrado!\n");
-        else
-            return cont;
-    } else
-        printf("Lista vazia!\n");
-}
-
 int main(int argc, char** argv) {
     Nolista *lista;
 
@@ -133,7 +119,7 @@ int main(int argc, char** argv) {
     insereFinal(&lista, 100);
     imprime(&lista);
 
-    printf("Posicao: %d\n", Busca(&lista, 1));
+    printf("Posicao: %d\n", Busca(&lista, 77));
 
     //insereElemento(&lista, 1);
     //insereElemento(&lista, 2);
